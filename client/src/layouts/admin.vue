@@ -1,11 +1,11 @@
 <template>
   <div>
     <Header />
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid grid-cols-4 gap-4">
       <div class="p-4 hidden md:block col-span-1">
         <SideBar />
       </div>
-      <div class="p-4 col-span-4 md:col-span-3">
+      <div class="p-4 pr-8 col-span-4 md:col-span-3">
         <router-view></router-view>
       </div>
     </div>
