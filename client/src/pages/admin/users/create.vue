@@ -176,7 +176,9 @@
             <span>Vai trò:</span>
           </div>
           <div class="col-span-4 sm:col-span-3">
-            <label class="cursor-pointer label justify-start gap-6">
+            <label
+              class="cursor-pointer label justify-start gap-6 sm:max-w-[300px]"
+            >
               <input
                 type="checkbox"
                 checked="checked"
