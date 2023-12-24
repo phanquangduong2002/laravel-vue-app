@@ -48,7 +48,9 @@
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Tình trạng:</span>
+              <span :class="{ 'text-rose-600': errors.status_id }"
+                >Tình trạng:</span
+              >
             </div>
             <div class="col-span-4 sm:col-span-3">
               <select
@@ -65,10 +67,23 @@
               </select>
             </div>
           </div>
+          <div
+            v-if="errors.status_id"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.status_id" class="mb-4 text-rose-600 text-sm">
+                {{ errors.status_id[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Tên tài khoản:</span>
+              <span :class="{ 'text-rose-600': errors.username }"
+                >Tên tài khoản:</span
+              >
             </div>
             <div class="col-span-4 sm:col-span-3">
               <input
@@ -79,10 +94,21 @@
               />
             </div>
           </div>
+          <div
+            v-if="errors.username"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.username" class="mb-4 text-rose-600 text-sm">
+                {{ errors.username[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Họ tên:</span>
+              <span :class="{ 'text-rose-600': errors.name }">Họ tên:</span>
             </div>
             <div class="col-span-4 sm:col-span-3">
               <input
@@ -93,10 +119,21 @@
               />
             </div>
           </div>
+          <div
+            v-if="errors.name"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.name" class="mb-4 text-rose-600 text-sm">
+                {{ errors.name[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Email:</span>
+              <span :class="{ 'text-rose-600': errors.email }">Email:</span>
             </div>
             <div class="col-span-4 sm:col-span-3">
               <input
@@ -107,10 +144,23 @@
               />
             </div>
           </div>
+          <div
+            v-if="errors.email"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.email" class="mb-4 text-rose-600 text-sm">
+                {{ errors.email[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Phòng ban:</span>
+              <span :class="{ 'text-rose-600': errors.department_id }"
+                >Phòng ban:</span
+              >
             </div>
             <div class="col-span-4 sm:col-span-3">
               <select
@@ -127,10 +177,23 @@
               </select>
             </div>
           </div>
+          <div
+            v-if="errors.department_id"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.department_id" class="mb-4 text-rose-600 text-sm">
+                {{ errors.department_id[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Mật khẩu:</span>
+              <span :class="{ 'text-rose-600': errors.password }"
+                >Mật khẩu:</span
+              >
             </div>
             <div class="col-span-4 sm:col-span-3">
               <div class="relative sm:max-w-[300px]">
@@ -157,10 +220,23 @@
               </div>
             </div>
           </div>
+          <div
+            v-if="errors.password"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.password" class="mb-4 text-rose-600 text-sm">
+                {{ errors.password[0] }}
+              </p>
+            </div>
+          </div>
           <div class="grid grid-cols-4 gap-6 mb-6 items-center justify-center">
             <div class="col-span-4 sm:col-span-1 text-start sm:text-end">
               <span class="text-rose-600 mr-2">*</span>
-              <span>Xác nhận mật khẩu:</span>
+              <span :class="{ 'text-rose-600': errors.password }"
+                >Xác nhận mật khẩu:</span
+              >
             </div>
             <div class="col-span-4 sm:col-span-3">
               <div class="relative sm:max-w-[300px]">
@@ -185,6 +261,17 @@
                   <img src="../../../assets/icons/eye-open.svg" alt="Eye" />
                 </button>
               </div>
+            </div>
+          </div>
+          <div
+            v-if="errors.password"
+            class="grid grid-cols-4 gap-6 items-center justify-center"
+          >
+            <div class="col-span-4 sm:col-span-1"></div>
+            <div class="col-span-4 sm:col-span-3">
+              <p v-if="errors.password" class="mb-4 text-rose-600 text-sm">
+                {{ errors.password[0] }}
+              </p>
             </div>
           </div>
           <div
@@ -293,7 +380,7 @@ export default defineComponent({
           'http://localhost:8000/api/users/create',
           user
         );
-        console.log(res.data);
+        console.log(res);
       } catch (error) {
         errors.value = error.response.data.errors;
         console.log(errors);

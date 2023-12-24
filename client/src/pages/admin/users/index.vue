@@ -45,8 +45,8 @@
                 </div>
               </div>
             </td>
-            <td>{{ user.name }}</td>
             <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
             <td>{{ user.department }}</td>
             <td></td>
             <td

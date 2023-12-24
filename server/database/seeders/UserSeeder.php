@@ -22,14 +22,6 @@ class UserSeeder extends Seeder
                 "password" => Hash::make("12345"),
                 "department_id" => "1",
                 "status_id" => "1"
-            ],
-            [
-                "username" => "Phan Quang Dương",
-                "name" => "Quang Dương",
-                "email" => "quangduongsayhi@gmail.com",
-                "password" => Hash::make("12345"),
-                "department_id" => "1",
-                "status_id" => "2"
             ]
         ]);
     }

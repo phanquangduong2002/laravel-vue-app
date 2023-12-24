@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -58,7 +59,16 @@ class UserController extends Controller
 
             "department_id.required" => "Vui lòng chọn phòng ban!",
             "status_id.required" => "Vui lòng chọn tình trạng!",
+        ]);
 
+        // Eloquent ORM
+        $user = User::create([
+            "status_id" => $request["status_id"],
+            "username" => $request["username"],
+            "name" => $request["name"],
+            "email" => $request["email"],
+            "department_id" => $request["department_id"],
+            "password" => Hash::make($request["password"])
         ]);
     }
 }
