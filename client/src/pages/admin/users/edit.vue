@@ -334,7 +334,7 @@
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span>Cập nhật tài khoản thành công!</span>
+        <span>Cập nhật thành công!</span>
       </div>
     </Transition>
   </div>
@@ -370,8 +370,11 @@ export default defineComponent({
       email: '',
       password: '',
       password_confirmation: '',
+      change_password: false,
       department_id: [],
       status_id: [],
+      login_at: '',
+      change_password_at: '',
     });
 
     const errors = ref([]);
@@ -424,7 +427,12 @@ export default defineComponent({
           `http://localhost:8000/api/users/${route.params.id}/edit`,
           user
         );
-        console.log(res);
+        if (res.status === 200) {
+          show.value = true;
+          setTimeout(() => {
+            show.value = false;
+          }, 2000);
+        }
       } catch (error) {
         errors.value = error.response.data.errors;
         console.log(errors);

@@ -96,7 +96,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            "username" => "required|unique:users,username,$id",
+            "username" => "required|unique:users,username," . $id,
             "name" => "required|max:255",
             "email" => "required|email",
             "department_id" => "required",
@@ -113,5 +113,27 @@ class UserController extends Controller
             "department_id.required" => "Vui lòng chọn phòng ban!",
             "status_id.required" => "Vui lòng chọn tình trạng!",
         ]);
+
+        User::find($id)->update([
+            "status_id" => $request["status_id"],
+            "username" => $request["username"],
+            "name" => $request["name"],
+            "email" => $request["email"],
+            "department_id" => $request["department_id"]
+        ]);
+
+        if ($request['change_password']) {
+            $validated = $request->validate([
+                "password" => "required|confirmed",
+            ], [
+                "password.required" => "Mật khẩu không được để trống!",
+                "password.confirmed" => "Mật khẩu và xác nhận mật khẩu không khớp!",
+            ]);
+
+            User::find($id)->update([
+                "password" => Hash::make($request["password"]),
+                "change_password_at" => NOW()
+            ]);
+        }
     }
 }

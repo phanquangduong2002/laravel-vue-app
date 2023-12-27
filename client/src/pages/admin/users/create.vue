@@ -432,7 +432,7 @@ export default defineComponent({
           'http://localhost:8000/api/users/create',
           user
         );
-        if (res) {
+        if (res.status === 20) {
           show.value = true;
           setTimeout(() => {
             show.value = false;
