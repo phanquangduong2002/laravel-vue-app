@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import { MotionPlugin } from '@vueuse/motion';
 import './style.css';
 import axios from 'axios';
 window.axios = axios;
@@ -13,4 +14,5 @@ const app = createApp(App);
 
 app.use(pinia);
 app.use(router);
+app.use(MotionPlugin);
 app.mount('#app');

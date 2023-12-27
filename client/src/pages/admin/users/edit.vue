@@ -14,10 +14,10 @@
             >Tài khoản</router-link
           >
         </li>
-        <li>Tạo mới tài khoản</li>
+        <li>Cập nhật tài khoản</li>
       </ul>
     </div>
-    <form @submit.prevent="createUser">
+    <form @submit.prevent="updateUser">
       <div class="grid grid-cols-3 gap-6 my-8">
         <div
           class="col-span-3 sm:col-span-1 flex flex-col items-center justify-start"
@@ -334,7 +334,7 @@
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span>Tạo tài khoản thành công!</span>
+        <span>Cập nhật tài khoản thành công!</span>
       </div>
     </Transition>
   </div>
@@ -343,7 +343,8 @@
 <script>
 import { defineComponent, ref, reactive, toRefs } from 'vue';
 import { useMotions } from '@vueuse/motion';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+
 import { useMenu } from '../../../store/useMenu.js';
 
 export default defineComponent({
@@ -351,6 +352,7 @@ export default defineComponent({
     const store = useMenu();
 
     const router = useRouter();
+    const route = useRoute();
 
     const avatarURL = ref(
       'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
@@ -395,9 +397,18 @@ export default defineComponent({
       },
     };
 
-    const getUsersCreate = async () => {
+    const getUserProfile = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/users/create');
+        const res = await axios.get(
+          `http://localhost:8000/api/users/${route.params.id}/edit`
+        );
+
+        user.username = res.data.user.username;
+        user.name = res.data.user.name;
+        user.email = res.data.user.email;
+        user.department_id = res.data.user.department_id;
+        user.status_id = res.data.user.status_id;
+
         users_status.value = res.data.users_status;
         departments.value = res.data.departments;
       } catch (error) {
@@ -405,7 +416,20 @@ export default defineComponent({
       }
     };
 
-    getUsersCreate();
+    getUserProfile();
+
+    const updateUser = async () => {
+      try {
+        const res = await axios.put(
+          `http://localhost:8000/api/users/${route.params.id}/edit`,
+          user
+        );
+        console.log(res);
+      } catch (error) {
+        errors.value = error.response.data.errors;
+        console.log(errors);
+      }
+    };
 
     const onChangeFile = (event) => {
       const file = event.target.files[0];
@@ -426,26 +450,6 @@ export default defineComponent({
       typeConfirmPassword.value = !typeConfirmPassword.value;
     };
 
-    const createUser = async () => {
-      try {
-        const res = await axios.post(
-          'http://localhost:8000/api/users/create',
-          user
-        );
-        if (res) {
-          show.value = true;
-          setTimeout(() => {
-            show.value = false;
-          }, 2000);
-
-          // router.push({ name: 'admin-users' });
-        }
-      } catch (error) {
-        errors.value = error.response.data.errors;
-        console.log(errors);
-      }
-    };
-
     return {
       store,
       motions,
@@ -455,6 +459,7 @@ export default defineComponent({
       avatarURL,
       ...toRefs(user),
       errors,
+      updateUser,
       onChangeFile,
       typePassword,
       typeConfirmPassword,
@@ -462,7 +467,6 @@ export default defineComponent({
       onChangeTypeConfirmPassword,
       users_status,
       departments,
-      createUser,
     };
   },
 });

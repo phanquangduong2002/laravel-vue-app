@@ -57,7 +57,13 @@
               {{ user.status }}
             </td>
             <th>
-              <button class="btn btn-ghost btn-xs">Chỉnh sửa</button>
+              <button class="btn btn-ghost btn-xs">
+                <router-link
+                  :to="{ name: 'admin-users-edit', params: { id: user.id } }"
+                >
+                  Chỉnh sửa
+                </router-link>
+              </button>
             </th>
           </tr>
         </tbody>
